@@ -12,9 +12,10 @@ const {
 } = require("../controller/auth.controller");
 const orderTableCopy = require("../model/UserOrderModel");
 const user = require("../model/UserModel");
-const Delivery = require("../model/Delivery_Task");
-const { json } = require("express/lib/response");
-const res = require("express/lib/response");
+const Contact = require("../model/contactModel")
+// const Delivery = require("../model/Delivery_Task");
+// const { json } = require("express/lib/response");
+// const res = require("express/lib/response");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -184,6 +185,23 @@ router.post("/TakeOrdering", (req, res) => {
       console.log(err.message);
     });
 });
+
+//Contact Api
+router.post('/contact', (req, res) => {
+  const contactMessage = new Contact({
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message
+  })
+ contactMessage.save()
+ .then( (data) => {
+  return res.status(200).json("successfully order")
+ }).catch( (error) => {
+
+  console.log(error)
+ })
+
+})
 
 router.get("/feachingOrder", (req, res) => {
   orderTableCopy
