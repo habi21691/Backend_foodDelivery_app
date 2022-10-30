@@ -17,10 +17,7 @@ const Food_table = new mongoose.Schema({
     type: String,
     requiered: true
   },
-  name:{
-    type:String,
-    requires:true
-  }
+  
 
 })
 

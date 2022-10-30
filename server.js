@@ -20,4 +20,4 @@ app.use(cors())
 app.use('/api',routeUrls)
 
 
-mongoss.connect('mongodb://localhost:27017/Foood_Delivery',()=>app.listen(5000,console.log("server is up and runnig")))
+mongoss.connect('mongodb://localhost:27017/Foood_Delivery',()=>app.listen(process.env.PORT || 5000,console.log("server is up and runnig")))
