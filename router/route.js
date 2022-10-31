@@ -135,6 +135,9 @@ router.post("/forgot_password", forgot_password);
 
 router.post("/Ordering", (req, res) => {
   // console.log(req);
+  try {
+    
+  
   upload(req, res, (err) => {
     if (err) {
       return res.status(500).json(err);
@@ -158,8 +161,12 @@ router.post("/Ordering", (req, res) => {
           console.log(err.message);
         });
     }
-  });
+  })
+} catch (error) {
+    return ;
+}
 });
+
 router.post("/TakeOrdering", (req, res) => {
   // console.log(req);
   // if(req.body.name ||req.body.address ||req.body.phonenumber ||req.body.amount ||req.body.fullname === ''){
