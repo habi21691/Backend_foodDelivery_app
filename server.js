@@ -13,7 +13,7 @@ const routeUrls=require('./router/route')
 
 app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended:false}))
-app.use("upload",express.static(path.join(__dirname,'upload')))
+app.use("upload",express.static('upload'))
 
 app.use(express.json())
 app.use(cors())
