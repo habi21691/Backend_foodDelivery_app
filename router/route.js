@@ -13,9 +13,7 @@ const {
 const orderTableCopy = require("../model/UserOrderModel");
 const user = require("../model/UserModel");
 const Contact = require("../model/contactModel")
-// const Delivery = require("../model/Delivery_Task");
-// const { json } = require("express/lib/response");
-// const res = require("express/lib/response");
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,10 +36,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({
   storage: storage,
-  // limits: {
-  //   fileSize: 1024 * 1024 * 5
-  // },
-  // fileFilter: fileFilter
+
 }).single("file");
 
 router.post("/imageUpload", (req, res) => {
@@ -168,11 +163,7 @@ router.post("/Ordering", (req, res) => {
 });
 
 router.post("/TakeOrdering", (req, res) => {
-  // console.log(req);
-  // if(req.body.name ||req.body.address ||req.body.phonenumber ||req.body.amount ||req.body.fullname === ''){
-  //   console.log('require')
-  // }
-
+  
   const Order = new orderTableCopy({
     fullname: req.body.fullname,
     address: req.body.address,
