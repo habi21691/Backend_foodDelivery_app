@@ -20,4 +20,4 @@ app.use(cors())
 app.use('/api',routeUrls)
 
 
-mongoss.connect('mongodb+srv://habtemariam:9p1qn0Wk4b5rZNuK@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority',()=>app.listen(process.env.PORT || 5000,console.log("server is up and runnig")))
+mongoss.connect('mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority',()=>app.listen(process.env.PORT || 5000,console.log("server is up and runnig")))
