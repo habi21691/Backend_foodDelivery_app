@@ -10,7 +10,8 @@ const helmet = require("helmet");
 
 const server = http.createServer((req, res) => {
   if (req.url === "/api/feachingOrder" && req.method === "GET") {
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.setHeader("Content-Type", "aplication/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
     res.write(JSON.stringify({ message: "Hello World" }));
     res.end('hello');
   }
