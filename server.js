@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
   if (req.url === "/api/feachingOrder" && req.method === "GET") {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify({ message: "Hello World" }));
-    res.end();
+    res.end('hello');
   }
   res.statusCode = 200;
   res.setHeader("Content-Type", "aplication/json");
