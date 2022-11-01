@@ -7,17 +7,16 @@ const bodyParse = require("body-parser");
 const path = require("path");
 
 require("dotenv").config();
+const cors = require("cors");
 
 const helmet = require("helmet");
 
-const server = http.createServer(app);
 
 // res.statusCode = 200;
 // res.setHeader("Content-Type", "aplication/json");
 // res.setHeader("Access-Control-Allow-Origin", "*");
 // res.end("Hello World! I am your new NodeJS app! \n");
 
-const cors = require("cors");
 
 const routeUrls = require("./router/route");
 
@@ -31,6 +30,7 @@ app.use("/api", routeUrls);
 
 app.use(helmet);
 
+const server = http.createServer(app);
 mongoss.connect(
   "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority",
   () =>
