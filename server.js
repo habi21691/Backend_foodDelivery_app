@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(cors({origin: 'https://mernfood-delivery.onrender.com/'}));
 app.use("/api", routeUrls);
 
-app.use(helmet);
+app.use(helmet());
 
 const server = http.createServer(app);
 mongoss.connect(
