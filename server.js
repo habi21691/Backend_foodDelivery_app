@@ -8,7 +8,6 @@ require("dotenv").config();
 
 const helmet = require("helmet");
 
-const server = http.createServer((app));
 
 const cors = require("cors");
 
@@ -22,18 +21,19 @@ app.use("upload", express.static("upload"));
 app.use(express.json());
 app.use(cors());
 app.use("/api", routeUrls);
+const server = http.createServer((app));
 
-app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: false,
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://mernfood-delivery.onrender.com"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     useDefaults: false,
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       scriptSrc: ["'self'", "https://mernfood-delivery.onrender.com"],
+//       objectSrc: ["'none'"],
+//       upgradeInsecureRequests: [],
+//     },
+//   })
+// );
 
 mongoss.connect(
   "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority",
