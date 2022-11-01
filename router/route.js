@@ -84,7 +84,7 @@ router.get("/uploadedProduct", (req, res, next) => {
             _id: doc._id,
             request: {
               type: "GET",
-              url: "http://localhost:4000/api/product" + doc._id,
+              url: "https://mernfood-delivery.onrender.com/api/product" + doc._id,
             },
           };
         }),
