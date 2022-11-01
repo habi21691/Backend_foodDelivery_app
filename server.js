@@ -20,6 +20,16 @@ app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended:false}))
 app.use("upload",express.static('upload'))
 
+app.use(
+    bodyParse.json({
+      type: [
+        'application/json',
+        'application/csp-report',
+        'application/reports+json',
+      ],
+    })
+  );
+  
 app.use(express.json())
 app.use(cors())
 app.use('/api',routeUrls)
