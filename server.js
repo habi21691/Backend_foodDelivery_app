@@ -10,7 +10,8 @@ const helmet = require("helmet");
 
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Type', 'aplication/json');
+    res.setHeader('Access-Control-Allow-Origin', '*')
     res.end('Hello World! I am your new NodeJS app! \n');
   });
 
