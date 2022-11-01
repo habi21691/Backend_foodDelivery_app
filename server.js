@@ -29,6 +29,7 @@ app.use(
       useDefaults: false,
       directives: {
         defaultSrc: ["'self'"],
+        styleSrc: ['self', "https://mui.com/"],
         scriptSrc: ["'self'", "https://mernfood-delivery.onrender.com"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
