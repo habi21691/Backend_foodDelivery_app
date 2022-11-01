@@ -6,24 +6,21 @@ const bodyParse = require("body-parser");
 const path = require("path");
 require("dotenv").config();
 
+
 const helmet = require("helmet");
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/api/featchinForSearch" && req.method === "GET") {
-    res.setHeader("Content-Type", "aplication/json");
-    //  res.setHeader("Access-Control-Allow-Origin", "*");
-    res.write(JSON.stringify({ message: "Hello World" }));
-    res.end();
-  }
+const server = http.createServer(app)
+ 
   // res.statusCode = 200;
   // res.setHeader("Content-Type", "aplication/json");
   // res.setHeader("Access-Control-Allow-Origin", "*");
   // res.end("Hello World! I am your new NodeJS app! \n");
-});
 
 const cors = require("cors");
 
 const routeUrls = require("./router/route");
+const router = require("./router/route");
+const { route } = require("./router/route");
 
 // app.use(helmet());
 app.use(bodyParse.json());
