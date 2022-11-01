@@ -9,12 +9,12 @@ require("dotenv").config();
 const helmet = require("helmet");
 
 const server = http.createServer((req, res) => {
-  if (req.url === "/api/feachingOrder" && req.method === "GET") {
-    res.setHeader("Content-Type", "aplication/json");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-    res.write(JSON.stringify({ message: "Hello World" }));
-    res.end('hello');
-  }
+  // if (req.url === "/api/feachingOrder" && req.method === "GET") {
+  //   res.setHeader("Content-Type", "aplication/json");
+  // res.setHeader("Access-Control-Allow-Origin", "*");
+  //   res.write(JSON.stringify({ message: "Hello World" }));
+  //   res.end('hello');
+  // }
   res.statusCode = 200;
   res.setHeader("Content-Type", "aplication/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
