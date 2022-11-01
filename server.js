@@ -9,13 +9,13 @@ const helmet = require("helmet");
 
 
 
-app.use(helmet());
 
 const cors=require('cors')
 
 
 const routeUrls=require('./router/route')
 
+app.use(helmet());
 app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended:false}))
 app.use("upload",express.static('upload'))
