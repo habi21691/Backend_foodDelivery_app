@@ -28,8 +28,14 @@ app.use('/api',routeUrls)
 
 
 app.use(
-    helmet({
-      contentSecurityPolicy: false,
+    helmet.contentSecurityPolicy({
+      useDefaults: false,
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://mernfood-delivery.onrender.com"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
     })
   );
 // app.use(
