@@ -1,5 +1,6 @@
 const express = require('express')
 const app=express()
+const http = require('http')
 const mongoss=require('mongoose')
 const bodyParse=require('body-parser')
 const path=require('path')
@@ -7,7 +8,11 @@ require('dotenv').config()
 
 const helmet = require("helmet");
 
-
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World! I am your new NodeJS app! \n');
+  });
 
 
 const cors=require('cors')
@@ -39,4 +44,4 @@ app.use(
     })
   );
 
-mongoss.connect('mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority',()=>app.listen(process.env.PORT || 5000,console.log("server is up and runnig")))
+mongoss.connect('mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority',()=>server.listen(process.env.PORT || 5000,console.log("server is up and runnig")))
