@@ -8,18 +8,18 @@ require("dotenv").config();
 
 const helmet = require("helmet");
 
-// const server = http.createServer((req, res) => {
-//   // if (req.url === "/api/feachingOrder" && req.method === "GET") {
-//   //   res.setHeader("Content-Type", "aplication/json");
-//   // res.setHeader("Access-Control-Allow-Origin", "*");
-//   //   res.write(JSON.stringify({ message: "Hello World" }));
-//   //   res.end('hello');
-//   // }
-//   res.statusCode = 200;
-//   res.setHeader("Content-Type", "aplication/json");
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.end("Hello World! I am your new NodeJS app! \n");
-// });
+const server = http.createServer((req, res) => {
+  if (req.url === "/api/feachingOrder" && req.method === "GET") {
+    res.setHeader("Content-Type", "aplication/json");
+     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.write(JSON.stringify({ message: "Hello World" }));
+    res.end();
+  }
+  // res.statusCode = 200;
+  // res.setHeader("Content-Type", "aplication/json");
+  // res.setHeader("Access-Control-Allow-Origin", "*");
+  // res.end("Hello World! I am your new NodeJS app! \n");
+});
 
 const cors = require("cors");
 
@@ -46,12 +46,6 @@ app.use(
   })
 );
 
-const server = http.createServer( function app(req, res)  {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "aplication/json");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.end("Hello World! I am your new NodeJS app! \n");
-});
 
 mongoss.connect(
   "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority",
