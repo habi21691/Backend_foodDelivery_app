@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+
 const express = require("express");
 const app = express();
 const http = require("http");
@@ -25,7 +25,7 @@ app.use(bodyParse.urlencoded({ extended: false }));
 app.use("upload", express.static("upload"));
 
 app.use(express.json());
-app.use(cors({origin: 'https://mernfood-delivery.onrender.com/'}));
+app.use(cors());
 app.use("/api", routeUrls);
 
 app.use(helmet());
