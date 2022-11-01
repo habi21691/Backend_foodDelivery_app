@@ -10,7 +10,7 @@ const fs = require('fs')
 const helmet = require("helmet");
 
 const server = http.createServer((req, res) => {
-     fs.readFile('/api/feachOrder')
+     fs.readFile('/api/feachingOrder')
     res.statusCode = 200;
     res.setHeader('Content-Type', 'aplication/json');
     res.setHeader('Access-Control-Allow-Origin', '*')
