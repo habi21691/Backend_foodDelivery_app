@@ -1,10 +1,15 @@
-const express=require('express')
+const express = require('express')
 const app=express()
 const mongoss=require('mongoose')
 const bodyParse=require('body-parser')
 const path=require('path')
 require('dotenv').config()
 
+const helmet = require("helmet");
+
+
+
+app.use(helmet());
 
 const cors=require('cors')
 
