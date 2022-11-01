@@ -20,30 +20,33 @@ app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended:false}))
 app.use("upload",express.static('upload'))
 
-app.use(
-    bodyParse.json({
-      type: [
-        'application/json',
-        'application/csp-report',
-        'application/reports+json',
-      ],
-    })
-  );
+
   
 app.use(express.json())
 app.use(cors())
 app.use('/api',routeUrls)
-
-app.use(
-    helmet.contentSecurityPolicy({
-      useDefaults: false,
-      directives: {
-        defaultSrc: ["'self'"],
-        styleSrc: ['self', "https://mui.com/"],
-        scriptSrc: ["'self'", "https://mernfood-delivery.onrender.com"],
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
-      },
+app.use((req, res, next) => {
+    res.set({
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+        "Content-Security-Policy": "default-src *",
+        "X-Content-Security-Policy": "default-src *",
+        "X-WebKit-CSP": "default-src *"
     })
-  );
+    next();
+});
+
+// app.use(
+//     helmet.contentSecurityPolicy({
+//       useDefaults: false,
+//       directives: {
+//         defaultSrc: ["'self'"],
+//         styleSrc: ['self', "https://mui.com/"],
+//         scriptSrc: ["'self'", "https://mernfood-delivery.onrender.com"],
+//         objectSrc: ["'none'"],
+//         upgradeInsecureRequests: [],
+//       },
+//     })
+//   );
 mongoss.connect('mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority',()=>app.listen(process.env.PORT || 5000,console.log("server is up and runnig")))
