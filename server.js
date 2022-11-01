@@ -25,18 +25,13 @@ app.use("upload",express.static('upload'))
 app.use(express.json())
 app.use(cors())
 app.use('/api',routeUrls)
-app.use((req, res, next) => {
-    res.set({
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-        "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
-        "Content-Security-Policy": "default-src *",
-        "X-Content-Security-Policy": "default-src *",
-        "X-WebKit-CSP": "default-src *"
-    })
-    next();
-});
 
+
+app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
 // app.use(
 //     helmet.contentSecurityPolicy({
 //       useDefaults: false,
