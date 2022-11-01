@@ -5,12 +5,13 @@ const mongoss=require('mongoose')
 const bodyParse=require('body-parser')
 const path=require('path')
 require('dotenv').config()
-const fs = require('fs')
 
 const helmet = require("helmet");
 
 const server = http.createServer((req, res) => {
-     fs.readFile('/api/feachingOrder')
+    if (req.url === '/api/feachingOrder' && req.method === 'GET') {
+             res.write(JSON.stringify(['You GOt it habi']))
+    }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'aplication/json');
     res.setHeader('Access-Control-Allow-Origin', '*')
