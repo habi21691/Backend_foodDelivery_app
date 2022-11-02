@@ -33,7 +33,7 @@ app.use(cors(
 app.use(function (req, res, next) {
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self';style-src 'self' 'sha256-CwE3Bg0VYQOIdNAkbB/Btdkhul49qZuwgNCMPgNY5zw=';"
+    "default-src 'none'; font-src 'self'; img-src 'self'; script-src 'none'; style-src 'self'; frame-src 'self';style-src 'self' 'sha256-CwE3Bg0VYQOIdNAkbB/Btdkhul49qZuwgNCMPgNY5zw=';"
   );
   next();
 });
