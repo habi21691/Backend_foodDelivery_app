@@ -33,7 +33,7 @@ app.use(cors(
 app.use(function (req, res, next) {
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'none'; font-src 'self'; img-src 'self'; script-src 'none';  frame-src 'self';style-src 'self' unsafe-inline;"
+    "default-src 'none'; font-src 'self'; img-src 'self'; script-src 'none';  frame-src 'self';style-src 'self' 'unsafe-inline';"
   );
   next();
 });
