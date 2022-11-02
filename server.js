@@ -31,11 +31,11 @@ app.use(cors(
     credentials:true
   }
 ));
+const server = http.createServer(routeUrls);
 app.use("/api", routeUrls);
 
 app.use(helmet());
 
-const server = http.createServer(routeUrls);
 mongoss.connect(
   "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority",
   () =>
