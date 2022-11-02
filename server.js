@@ -17,6 +17,7 @@ app.use(compression())
 
 
 const routeUrls = require("./router/route");
+const middleware = require('./middleware')
 
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false }));
@@ -33,6 +34,9 @@ app.use("/api", routeUrls);
 
 app.use(helmet());
 
+app.use(middleware.notFound);
+app.use(middleware.errorHandler);
+
 const server = http.createServer(app);
 mongoss.connect(
   "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority",
@@ -42,3 +46,5 @@ mongoss.connect(
       console.log("server is up and runnig")
     )
 );
+
+module.exports = server;
