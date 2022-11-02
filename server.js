@@ -69,11 +69,11 @@ app.use(middleware.errorHandler);
 const server = http.createServer(app);
 
 
-mongoss.Promise=global.Promise;
-mongoss.set('useNewUrlParser',true);
-mongoss.set('useFindAndModify',false);
-mongoss.set('useCreateIndex',true);
-mongoss.set('useUnifiedTopology',true);
+// mongoss.Promise=global.Promise;
+// mongoss.set('useNewUrlParser',true);
+// mongoss.set('useFindAndModify',false);
+// mongoss.set('useCreateIndex',true);
+// mongoss.set('useUnifiedTopology',true);
 
 mongoss.connect(
   "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Foood_Delivery?retryWrites=true&w=majority",
