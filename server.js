@@ -25,7 +25,12 @@ app.use(bodyParse.urlencoded({ extended: false }));
 app.use("upload", express.static("upload"));
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin:'*',
+    credentials:true
+  }
+));
 app.use("/api", routeUrls);
 
 app.use(helmet());
