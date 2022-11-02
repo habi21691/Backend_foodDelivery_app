@@ -4,7 +4,7 @@ const app = express();
 const http = require("http");
 const mongoss = require("mongoose");
 const bodyParse = require("body-parser");
-const path = require("path");
+// const path = require("path");
 
 require("dotenv").config();
 const cors = require("cors");
@@ -47,4 +47,4 @@ mongoss.connect(
     )
 );
 
-module.exports = server;
+
