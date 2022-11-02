@@ -30,15 +30,13 @@ app.use(cors(
     credentials:true
   }
 ));
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
-
-// other app.use() options ...
-app.use(expressCspHeader({ 
-    policies: { 
-        'default-src': [expressCspHeader.NONE], 
-        'img-src': [expressCspHeader.SELF], 
-    } 
-}));
+app.use(function (req, res, next) {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"
+  );
+  next();
+});
 
 app.use("/api", routeUrls);
 
