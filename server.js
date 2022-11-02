@@ -5,6 +5,7 @@ const http = require("http");
 const mongoss = require("mongoose");
 const bodyParse = require("body-parser");
 // const path = require("path");
+const morgan = require('morgan')
 
 require("dotenv").config();
 const cors = require("cors");
@@ -30,13 +31,33 @@ app.use(cors(
     credentials:true
   }
 ));
-app.use(function (req, res, next) {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'none'; font-src 'self'; img-src 'self'; script-src 'none';  frame-src 'self';style-src 'self' 'unsafe-inline';"
-  );
-  next();
+
+app.use((req,res,next)=>
+{
+    res.header('Access-Control-Allow-Origin','*');
+    res.header(
+        'Access-Control-Allow-headers',
+        'Origin,X-Requested-With,Content-Type,Accept,Authorization'
+        );
+
+        if(req.method==='OPTIONS')
+        {
+            res.header('Accept-Control-Methods','PUT,POST,PATCH,DELETE,GET');
+            return res.status(200).json({
+
+            })
+        }
+        next();
 });
+
+app.use(morgan('dev'))
+// app.use(function (req, res, next) {
+//   res.setHeader(
+//     'Content-Security-Policy',
+//     "default-src 'none'; font-src 'self'; img-src 'self'; script-src 'none';  frame-src 'self';style-src 'self' 'unsafe-inline';"
+//   );
+//   next();
+// });
 
 app.use("/api", routeUrls);
 
