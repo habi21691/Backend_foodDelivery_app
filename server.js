@@ -30,6 +30,16 @@ app.use(cors(
     credentials:true
   }
 ));
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+
+// other app.use() options ...
+app.use(expressCspHeader({ 
+    policies: { 
+        'default-src': [expressCspHeader.NONE], 
+        'img-src': [expressCspHeader.SELF], 
+    } 
+}));
+
 app.use("/api", routeUrls);
 
 app.use(helmet());
