@@ -11,6 +11,7 @@ const favicon = require('serve-favicon')
 require("dotenv").config();
 const cors = require("cors");
 
+
 const helmet = require("helmet");
 
 const compression = require("compression");
@@ -31,9 +32,9 @@ app.use(cors(
     origin:'*',
     credentials:true
   }
-));
-
-app.use(favicon(path.join(__dirname ,'/favicon.ico')));
+  ));
+  
+  app.use(favicon(path.join('./favicon.ico')))
 
 app.get('/', (_, res)=> res.sendFile(__dirname + '/index.html'))
 app.use((req,res,next)=>
