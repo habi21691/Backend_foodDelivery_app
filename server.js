@@ -44,7 +44,6 @@ app.use((req,res,next)=>
         'Access-Control-Allow-headers',
         'Origin,X-Requested-With,Content-Type,Accept,Authorization'
         );
-
         if(req.method==='OPTIONS')
         {
             res.header('Accept-Control-Methods','PUT,POST,PATCH,DELETE,GET');
