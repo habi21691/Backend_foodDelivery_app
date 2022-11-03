@@ -5,10 +5,13 @@ const mongoss = require("mongoose");
 const bodyParse = require("body-parser");
 const path = require("path");
 const morgan = require("morgan");
-const favicon = require("serve-favicon");
+// const favicon = require("serve-favicon");
 
 require("dotenv").config();
 const cors = require("cors");
+const favicon = require('express-favicon');
+
+app.use(favicon(__dirname + '/favicon.ico'));
 
 const helmet = require("helmet");
 
@@ -31,7 +34,7 @@ app.use(
   })
 );
 
-app.use('/favicon.ico',express.static(path.join(__dirname, "./favicon.ico")));
+// app.use('/favicon.ico',express.static(path.join(__dirname, "./favicon.ico")));
 
 app.use((req, res, next) => {
   console.log(req);
