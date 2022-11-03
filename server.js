@@ -4,8 +4,9 @@ const app = express();
 const http = require("http");
 const mongoss = require("mongoose");
 const bodyParse = require("body-parser");
-// const path = require("path");
+const path = require("path");
 const morgan = require('morgan')
+const favicon = require('serve-favicon')
 
 require("dotenv").config();
 const cors = require("cors");
@@ -32,6 +33,9 @@ app.use(cors(
   }
 ));
 
+app.use(favicon(__dirname + '/upload/favicon.svg'));
+
+app.get('/', (_, res)=> res.sendFile(__dirname + '/index.html'))
 app.use((req,res,next)=>
 {
   console.log(req)
@@ -51,15 +55,15 @@ app.use((req,res,next)=>
         next();
 });
 
-app.use(morgan('dev'))
-function ignoreFavicon(req, res, next) {
-  if (req.originalUrl.includes('favicon.ico')) {
-    res.status(204).end()
-  }
-  next();
-}
+// app.use(morgan('dev'))
+// function ignoreFavicon(req, res, next) {
+//   if (req.originalUrl.includes('favicon.ico')) {
+//     res.status(204).end()
+//   }
+//   next();
+// }
 
-app.use(ignoreFavicon);
+// app.use(ignoreFavicon);
 
 app.use("/api", routeUrls);
 
