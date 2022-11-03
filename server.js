@@ -33,7 +33,7 @@ app.use(cors(
   }
 ));
 
-app.use(favicon(path.join(__dirname ,'public','image','favicon.ico')));
+app.use('/favicon.ico', express.static('/public/image/favicon.ico')) 
 
 app.get('/', (_, res)=> res.sendFile(__dirname + '/index.html'))
 app.use((req,res,next)=>
