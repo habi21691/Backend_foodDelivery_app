@@ -70,19 +70,26 @@ app.use(middleware.errorHandler);
 const server = http.createServer(app);
 
 
-// mongoss.Promise=global.Promise;
-// mongoss.set('useNewUrlParser',true);
-// mongoss.set('useFindAndModify',false);
-// mongoss.set('useCreateIndex',true);
-// mongoss.set('useUnifiedTopology',true);
 
 mongoss.connect(
   "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Foood_Delivery?retryWrites=true&w=majority",
-  () =>
-    server.listen(
-      process.env.PORT || 5000,
-      console.log("server is up and runnig")
-    )
-);
+
+ 
+).then(()=>console.log('Database Connected')
+).catch(err=>{
+console.log(err);
+});
+  
+  
+  
+  // mongoss.Promise=global.Promise;
+  // mongoss.set('useNewUrlParser',true);
+  // mongoss.set('useFindAndModify',false);
+  // mongoss.set('useCreateIndex',true);
+  // mongoss.set('useUnifiedTopology',true);
 
 
+server.listen(
+  process.env.PORT || 5000,
+  console.log("server is up and runnig")
+)
