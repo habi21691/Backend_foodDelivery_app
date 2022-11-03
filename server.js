@@ -52,13 +52,14 @@ app.use((req,res,next)=>
 });
 
 app.use(morgan('dev'))
-// app.use(function (req, res, next) {
-//   res.setHeader(
-//     'Content-Security-Policy',
-//     "default-src 'none'; font-src 'self'; img-src 'self'; script-src 'none';  frame-src 'self';style-src 'self' 'unsafe-inline';"
-//   );
-//   next();
-// });
+function ignoreFavicon(req, res, next) {
+  if (req.originalUrl.includes('favicon.ico')) {
+    res.status(204).end()
+  }
+  next();
+}
+
+app.use(ignoreFavicon);
 
 app.use("/api", routeUrls);
 
