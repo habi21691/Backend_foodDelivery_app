@@ -33,7 +33,7 @@ app.use(cors(
   }
 ));
 
-app.use(favicon(__dirname + '/upload/favicon.svg'));
+app.use(favicon(__dirname + '/upload/favicon.png'));
 
 app.get('/', (_, res)=> res.sendFile(__dirname + '/index.html'))
 app.use((req,res,next)=>
