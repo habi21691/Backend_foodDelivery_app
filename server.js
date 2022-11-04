@@ -11,7 +11,7 @@ require("dotenv").config();
 const cors = require("cors");
 // const favicon = require('express-favicon');
 
-app.get(favicon(__dirname + '/public/favicon.ico'));
+// app.get(favicon(__dirname + '/public/favicon.ico'));
 
 const helmet = require("helmet");
 
