@@ -12,8 +12,8 @@ const cors = require("cors");
 // const favicon = require('express-favicon');
 
 // app.get(favicon(__dirname + '/public/favicon.ico'));
-app.use('/favicon.ico', express.static('public/favicon.ico'));
-app.get('/',express.static('/index.html'))
+app.use(favicon(path.join(__dirname + '/public/favicon.ico')))
+// app.get('/',express.static('/index.html'))
 
 const helmet = require("helmet");
 
