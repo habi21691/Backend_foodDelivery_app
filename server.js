@@ -12,7 +12,7 @@ const cors = require("cors");
 // const favicon = require('express-favicon');
 
 // app.get(favicon(__dirname + '/public/favicon.ico'));
-
+app.use('/favicon.ico', express.static('upload/favicon.ico'));
 const helmet = require("helmet");
 
 const compression = require("compression");
