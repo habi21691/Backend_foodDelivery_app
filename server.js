@@ -9,11 +9,9 @@ const favicon = require("serve-favicon");
 
 require("dotenv").config();
 const cors = require("cors");
-// const favicon = require('express-favicon');
 
-// app.get(favicon(__dirname + '/public/favicon.ico'));
 app.use(favicon(path.join(__dirname + '/public/favicon.ico')))
-// app.get('/',express.static('/index.html'))
+app.get('/',express.static('/index.html'))
 
 const helmet = require("helmet");
 
@@ -28,6 +26,8 @@ app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false }));
 app.use("upload", express.static("upload"));
 
+app.get('/api/uploadedProduct')
+
 app.use(express.json());
 app.use(
   cors({
@@ -36,7 +36,6 @@ app.use(
   })
 );
 
-// app.use('/favicon.ico',express.static(path.join(__dirname, "./favicon.ico")));
 
 app.use((req, res, next) => {
   console.log(req);
@@ -52,15 +51,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(morgan('dev'))
-// function ignoreFavicon(req, res, next) {
-//   if (req.originalUrl.includes('favicon.ico')) {
-//     res.status(204).end()
-//   }
-//   next();
-// }
 
-// app.use(ignoreFavicon);
 
 app.use("/api", routeUrls);
 
@@ -80,10 +71,5 @@ mongoss
     console.log(err);
   });
 
-// mongoss.Promise=global.Promise;
-// mongoss.set('useNewUrlParser',true);
-// mongoss.set('useFindAndModify',false);
-// mongoss.set('useCreateIndex',true);
-// mongoss.set('useUnifiedTopology',true);
 
 server.listen(process.env.PORT || 5000, console.log("server is up and runnig"));

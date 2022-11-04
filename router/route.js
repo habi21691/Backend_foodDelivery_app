@@ -70,7 +70,7 @@ router.post("/imageUpload", (req, res) => {
 });
 
 router.get("/uploadedProduct", (req, res, next) => {
-  console.log('/favicon.ioc')
+  
   Food_store.find()
     .select("name price _id image ")
     .exec()
