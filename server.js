@@ -5,11 +5,11 @@ const mongoss = require("mongoose");
 const bodyParse = require("body-parser");
 const path = require("path");
 const morgan = require("morgan");
-// const favicon = require("serve-favicon");
+const favicon = require("serve-favicon");
 
 require("dotenv").config();
 const cors = require("cors");
-const favicon = require('express-favicon');
+// const favicon = require('express-favicon');
 
 app.use(favicon(__dirname + '/favicon.ico'));
 
