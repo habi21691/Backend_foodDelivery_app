@@ -26,7 +26,7 @@ app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false }));
 app.use("upload", express.static("upload"));
 
-app.get('/api/uploadedProduct')
+// app.get('/api/uploadedProduct')
 
 app.use(express.json());
 app.use(
