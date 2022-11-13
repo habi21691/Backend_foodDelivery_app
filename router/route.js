@@ -327,11 +327,11 @@ router.post('/sendEmail', async (req, res) =>{
 })
 
 router.post('/feachingDriver', (req, res) =>{
-   user.find({role: 'Delivery'}).then((data)=>{
-         console.log(data)
+   user.find({role: "Delivery"}).then((data)=>{
+         return res.status(200).json(data)
     })
     .catch((err)=>{
-      console.log(err)
+      res.status(500).json(err)
     })
 })
 
