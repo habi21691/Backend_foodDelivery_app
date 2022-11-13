@@ -306,9 +306,12 @@ router.get("/deleteOrder/:_id", (req, res) => {
 });
 
 router.post('/sendEmail', async (req, res) =>{
-  
   const {email} = req.body;
-  try {
+  
+  if(!email){
+    res.status(401).json({status:401,message:"Enter Your Email"})
+}
+try {
     const sent_from = process.env.EMAIL_USER
     const send_to = email;
     const reply_to = email
