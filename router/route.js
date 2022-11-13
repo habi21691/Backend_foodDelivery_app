@@ -3,6 +3,7 @@ const router = express.Router();
 const Food_store = require("../model/Food_Store");
 const multer = require("multer");
 const fs = require("fs");
+const  sendEmail = require( "../util/sendMailer");
 
 const {
   signin,
@@ -303,5 +304,35 @@ router.get("/deleteOrder/:_id", (req, res) => {
       return res.status(500).json(err);
     });
 });
+
+router.post('/sendEmail', async (req, res) =>{
+  
+  const {email} = req.body;
+  try {
+    const sent_from = process.env.EMAIL_USER
+    const send_to = email;
+    const reply_to = email
+    const subject = 'Thank You'
+    const message = `
+    <h2>hello user</h2>
+    <p>thanks for the service</p>
+    <p>Regareds....</p>
+    `
+
+    await sendEmail(subject, message, send_to, sent_from, reply_to);
+       res.status(200).json({succuss: true, message: 'Email Sent'})
+  } catch (error) {
+    res.status(500).json(error.message)
+  }
+})
+
+router.post('/feachingDriver', (req, res) =>{
+   user.find({role: 'Delivery'}).then((data)=>{
+         console.log(data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+})
 
 module.exports = router;
