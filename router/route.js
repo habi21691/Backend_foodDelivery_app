@@ -268,6 +268,22 @@ router.put("/EditingOrder/:_id", (req, res, next) => {
       console.log(err.message);
     });
 });
+
+
+router.post('/message', (req, res) => {
+  console.log(req)
+       orderTableCopy.updateOne( 
+        { _id: req.params._id },
+        {
+          $set: {
+            status: req.body.data.status,
+           
+          },
+        }).then( (res) =>{
+          console.log(res)
+        })
+
+})
 //tasks of the delevery boys
 router.get("/oderedTaskForDelivery/:deliver_boy", (req, res) => {
   orderTableCopy
