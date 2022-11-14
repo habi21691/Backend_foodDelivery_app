@@ -273,7 +273,7 @@ router.put("/EditingOrder/:_id", (req, res, next) => {
 router.post('/message', (req, res) => {
   console.log(req)
        orderTableCopy.updateOne( 
-        { _id: req.params._id },
+        { _id: req.body._id },
         {
           $set: {
             status: req.body.data.message,
