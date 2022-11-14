@@ -276,7 +276,7 @@ router.post('/message', (req, res) => {
         { _id: req.params._id },
         {
           $set: {
-            status: req.body.data.status,
+            status: req.body.data.message,
            
           },
         }).then( (res) =>{
