@@ -203,6 +203,16 @@ router.get('/contact', (req, res) => {
 
 })
 
+router.get('/getfeadback', (req, res) => {
+  Contact.find().then(
+    (data) =>{
+      return res.status(200).json(data)
+    }
+  ).cactch( (err)=>{
+    console.log(err)
+  })
+})
+
 router.get("/feachingOrder", (req, res) => {
   orderTableCopy
     .find()

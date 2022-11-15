@@ -74,22 +74,6 @@ exports.signin = (req, res) => {
           expiresIn: 86400,
         }
       );
-      // user.token = token;
-      //       const refreshToken =  jwt.sign(
-      //         {  id: user._id },
-      //         "REFRESH_TOKEN_SECRET",
-      //         {
-      //           expiresIn: "1m",
-      //         }
-      //       );
-      //       refreshTokens.push(refreshToken);
-
-      //   res.json({
-      //     accessToken,
-      //     refreshToken,
-      //   });
-
-      // let refreshTokens = [];
 
       //responding to client request with user profile success message and  access token .
       res.status(200).send({
