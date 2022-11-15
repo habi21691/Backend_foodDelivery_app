@@ -199,12 +199,13 @@ router.get("/contact", (req, res) => {
 });
 
 router.get("/getfeadback", (req, res) => {
-  Contact.find()
+  Contact
+    .find()
     .then((data) => {
       return res.status(200).json(data);
     })
-    .cactch((err) => {
-      return res.status(500).json(err);
+    .catch((err) => {
+      return res.status(500).json(err.message);
     });
 });
 
