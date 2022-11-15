@@ -182,7 +182,7 @@ router.post("/TakeOrdering", (req, res) => {
 });
 
 //Contact Api
-router.get("/contact", (req, res) => {
+router.post("/contact", (req, res) => {
   const contactMessage = new Contact({
     name: req.body.name,
     email: req.body.email,
