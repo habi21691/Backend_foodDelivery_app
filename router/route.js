@@ -191,7 +191,7 @@ router.get("/contact", (req, res) => {
   contactMessage
     .save()
     .then((data) => {
-      return res.status(200).json("successfully order");
+      return res.status(200).json(data);
     })
     .catch((error) => {
       console.log(error);
