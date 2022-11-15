@@ -3,7 +3,7 @@ const router = express.Router();
 const Food_store = require("../model/Food_Store");
 const multer = require("multer");
 const fs = require("fs");
-const  sendEmail = require( "../util/sendMailer");
+const sendEmail = require("../util/sendMailer");
 
 const {
   signin,
@@ -13,8 +13,7 @@ const {
 } = require("../controller/auth.controller");
 const orderTableCopy = require("../model/UserOrderModel");
 const user = require("../model/UserModel");
-const Contact = require("../model/contactModel")
-
+const Contact = require("../model/contactModel");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -37,7 +36,6 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({
   storage: storage,
-
 }).single("file");
 
 router.post("/imageUpload", (req, res) => {
@@ -71,7 +69,6 @@ router.post("/imageUpload", (req, res) => {
 });
 
 router.get("/uploadedProduct", (req, res, next) => {
-  
   Food_store.find()
     .select("name price _id image ")
     .exec()
@@ -86,7 +83,8 @@ router.get("/uploadedProduct", (req, res, next) => {
             _id: doc._id,
             request: {
               type: "GET",
-              url: "https://mernfood-delivery.onrender.com/api/product" + doc._id,
+              url:
+                "https://mernfood-delivery.onrender.com/api/product" + doc._id,
             },
           };
         }),
@@ -133,46 +131,43 @@ router.post("/forgot_password", forgot_password);
 router.post("/Ordering", (req, res) => {
   // console.log(req);
   try {
-    
-  
-  upload(req, res, (err) => {
-    if (err) {
-      return res.status(500).json(err);
-    } else {
-      const Order = new orderTableCopy({
-        fullname: req.body.fullname,
-        address: req.body.address,
-        phonenumber: req.body.phonenumber,
-        name: req.body.name,
-        amount: req.body.amount,
-        image: req.file.filename,
-        date: req.body.date,
-        status: req.body.status,
-      });
-
-      Order.save()
-        .then((data) => {
-          return res.status(200).json((message = "successfully ordered "));
-        })
-        .catch((err) => {
-          console.log(err.message);
+    upload(req, res, (err) => {
+      if (err) {
+        return res.status(500).json(err);
+      } else {
+        const Order = new orderTableCopy({
+          fullname: req.body.fullname,
+          address: req.body.address,
+          phonenumber: req.body.phonenumber,
+          name: req.body.name,
+          amount: req.body.amount,
+          image: req.file.filename,
+          date: req.body.date,
+          status: req.body.status,
         });
-    }
-  })
-} catch (error) {
-    return ;
-}
+
+        Order.save()
+          .then((data) => {
+            return res.status(200).json((message = "successfully ordered "));
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
+  } catch (error) {
+    return;
+  }
 });
 
 router.post("/TakeOrdering", (req, res) => {
-  
   const Order = new orderTableCopy({
     fullname: req.body.fullname,
     address: req.body.address,
     phonenumber: req.body.phonenumber,
     name: req.body.name,
     amount: req.body.amount,
-    
+
     date: req.body.date,
     status: req.body.status,
   });
@@ -187,31 +182,31 @@ router.post("/TakeOrdering", (req, res) => {
 });
 
 //Contact Api
-router.get('/contact', (req, res) => {
+router.get("/contact", (req, res) => {
   const contactMessage = new Contact({
     name: req.body.name,
     email: req.body.email,
-    message: req.body.message
-  })
- contactMessage.save()
- .then( (data) => {
-  return res.status(200).json("successfully order")
- }).catch( (error) => {
+    message: req.body.message,
+  });
+  contactMessage
+    .save()
+    .then((data) => {
+      return res.status(200).json("successfully order");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
-  console.log(error)
- })
-
-})
-
-router.get('/getfeadback', (req, res) => {
-  Contact.find().then(
-    (data) =>{
-      return res.status(200).json(data)
-    }
-  ).cactch( (err)=>{
-    console.log(err)
-  })
-})
+router.get("/getfeadback", (req, res) => {
+  Contact.find()
+    .then((data) => {
+      return res.status(200).json(data);
+    })
+    .cactch((err) => {
+      return res.status(500).json(err);
+    });
+});
 
 router.get("/feachingOrder", (req, res) => {
   orderTableCopy
@@ -279,21 +274,21 @@ router.put("/EditingOrder/:_id", (req, res, next) => {
     });
 });
 
-
-router.post('/message', (req, res) => {
-  console.log(req)
-       orderTableCopy.updateOne( 
-        { _id: req.body._id },
-        {
-          $set: {
-            status: req.body.data.message,
-           
-          },
-        }).then( (res) =>{
-          console.log(res)
-        })
-
-})
+router.post("/message", (req, res) => {
+  console.log(req);
+  orderTableCopy
+    .updateOne(
+      { _id: req.body._id },
+      {
+        $set: {
+          status: req.body.data.message,
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+    });
+});
 //tasks of the delevery boys
 router.get("/oderedTaskForDelivery/:deliver_boy", (req, res) => {
   orderTableCopy
@@ -331,39 +326,39 @@ router.get("/deleteOrder/:_id", (req, res) => {
     });
 });
 
-router.post('/sendEmail', async (req, res) =>{
-  const {email} = req.body;
-  
-  if(!email){
-    res.status(401).json({status:401,message:"Enter Your Email"})
-}
-try {
-    const sent_from = process.env.EMAIL_USER
+router.post("/sendEmail", async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    res.status(401).json({ status: 401, message: "Enter Your Email" });
+  }
+  try {
+    const sent_from = process.env.EMAIL_USER;
     const send_to = email;
-    const reply_to = email
-    const subject = 'Thank You'
+    const reply_to = email;
+    const subject = "Thank You";
     const message = `
     <h2>hello user</h2>
     <p>thanks for the service</p>
     <p>Regareds....</p>
-    `
+    `;
 
     await sendEmail(subject, message, send_to, sent_from, reply_to);
-       res.status(200).json({succuss: true, message: 'Email Sent'})
+    res.status(200).json({ succuss: true, message: "Email Sent" });
   } catch (error) {
-    res.status(500).json(error.message)
+    res.status(500).json(error.message);
   }
-})
+});
 
-router.post('/feachingDriver', (req, res) =>{
-   user.find({role: "Delivery"}).then((data)=>{
-        return res.status(200).json(data)
+router.post("/feachingDriver", (req, res) => {
+  user
+    .find({ role: "Delivery" })
+    .then((data) => {
+      return res.status(200).json(data);
     })
-    .catch((err)=>{
-      return res.status(500).json(err)
-    })
-})
-
-
+    .catch((err) => {
+      return res.status(500).json(err);
+    });
+});
 
 module.exports = router;
