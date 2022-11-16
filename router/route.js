@@ -328,9 +328,18 @@ router.get("/deleteOrder/:_id", (req, res) => {
 });
 
 router.post("/sendEmail", async (req, res) => {
-  const { email } = req.body;
-
-  if (!email) {
+  const { username } = req.body;
+  user.findOne({
+    username: req.body.username
+  }).exec(function(err, user) {
+    if (user) {
+      done(err, user);
+    } else {
+      done('User not found.');
+    }
+  });
+  
+  if (req.username !== username) {
     res.status(401).json({ status: 401, message: "Enter Your Email" });
   }
   try {
