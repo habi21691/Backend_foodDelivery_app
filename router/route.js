@@ -328,9 +328,9 @@ router.get("/deleteOrder/:_id", (req, res) => {
 });
 
 router.post("/sendEmail", async (req, res) => {
-  const { username } = req.body;
+  const { email } = req.body;
   user.findOne({
-    username: req.body.username
+    username: req.body.email
   }).exec(function(err, user) {
     if (user) {
       done(err, user);
