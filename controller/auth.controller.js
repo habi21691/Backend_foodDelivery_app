@@ -110,6 +110,7 @@ exports.auth = (req, res) => {
 };
 
 exports.forgot_password = (req, res) => {
+  console.log(req)
   User.findOne({
     username: req.body.username,
   })
