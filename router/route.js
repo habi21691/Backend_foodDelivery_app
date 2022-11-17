@@ -4,6 +4,7 @@ const Food_store = require("../model/Food_Store");
 const multer = require("multer");
 const fs = require("fs");
 const sendEmail = require("../util/sendMailer");
+const feadback = require('../model/FeadbackfromDelivery')
 
 const {
   signin,
@@ -208,7 +209,21 @@ router.get("/getfeadback", (req, res) => {
       return res.status(500).json(err.message);
     });
 });
-
+// pulling feadback from the delivery
+router.post('/getfeadbackfromDelivery', async(req, res) => {
+  const responsefromDelivery = new feadback({
+    customername: req.body.customername,
+    address: req.body.address,
+    phonenumber: req.body.phonenumber,
+    status: req.body.status
+  })
+  responsefromDelivery.save()
+  .then((response)=>{
+    return res.status(200).json(response)
+  }).catch((err)=>{
+    return res.status(500).json(err)
+  })
+})
 router.get("/feachingOrder", (req, res) => {
   orderTableCopy
     .find()
@@ -328,36 +343,34 @@ router.get("/deleteOrder/:_id", (req, res) => {
 });
 
 router.post("/sendEmail", async (req, res) => {
-  const { email } = req.body;
-  user.findOne({
-    username: req.body.email
-  }).exec(function(err, user) {
-    if (user) {
-      done(err, user);
-    } else {
-      done('User not found.');
-    }
-  });
+  // console.log(req.body);
+  await user.find({
+    username: req.body.username
+  }).then( (response) => {
+    return res.status(200).json(response)
+  }).catch( (err) => {
+    return res.status(500).json(err.message)
+  })
   
-  if (req.username !== username) {
-    res.status(401).json({ status: 401, message: "Enter Your Email" });
-  }
-  try {
-    const sent_from = process.env.EMAIL_USER;
-    const send_to = email;
-    const reply_to = email;
-    const subject = "Thank You";
-    const message = `
-    <h2>hello user</h2>
-    <p>thanks for the service</p>
-    <p>Regareds....</p>
-    `;
+  // if (req.username !== username) {
+  //   res.status(401).json({ status: 401, message: "Enter Your Email" });
+  // }
+  // try {
+  //   const sent_from = process.env.EMAIL_USER;
+  //   const send_to = email;
+  //   const reply_to = email;
+  //   const subject = "Thank You";
+  //   const message = `
+  //   <h2>hello user</h2>
+  //   <p>thanks for the service</p>
+  //   <p>Regareds....</p>
+  //   `;
 
-    await sendEmail(subject, message, send_to, sent_from, reply_to);
-    res.status(200).json({ succuss: true, message: "Email Sent" });
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
+  //   await sendEmail(subject, message, send_to, sent_from, reply_to);
+  //   res.status(200).json({ succuss: true, message: "Email Sent" });
+  // } catch (error) {
+  //   res.status(500).json(error.message);
+  // }
 });
 
 router.post("/feachingDriver", (req, res) => {
