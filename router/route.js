@@ -224,6 +224,16 @@ router.post('/getfeadbackfromDelivery', async(req, res) => {
     return res.status(500).json(err)
   })
 })
+// get notification from the Driver
+router.get('/feaching', async(req, res)=>{
+  feadback.find().then((response) => {
+    return res.status(200).json(response)
+  }).catch((err)=>{
+    return res.status(500).json(err.message)
+  })
+})
+
+
 router.get("/feachingOrder", (req, res) => {
   orderTableCopy
     .find()
