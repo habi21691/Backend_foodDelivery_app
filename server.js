@@ -64,7 +64,7 @@ const server = http.createServer(app);
 
 mongoss
   .connect(
-    "mongodb+srv://habtemariam:vZByrZCsG8LaKXUT@mern.2e1gmj9.mongodb.net/Food_Delivery?retryWrites=true&w=majority"
+    process.env.MONGO_URI
   )
   .then(() => console.log("Database Connected"))
   .catch((err) => {
