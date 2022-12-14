@@ -61,7 +61,7 @@ app.use(middleware.notFound);
 app.use(middleware.errorHandler);
 
 const server = http.createServer(app);
-mongoss.set("strictQuery", false);
+mongoss.set("strictQuery", true);
 mongoss
   .connect(
     process.env.MONGO_URI
